@@ -1,8 +1,0 @@
----
-title: "INFO550_Homework2"
-author: "Jordan Ahn"
-date: "9/22/2021"
-output: html_document
----
-
-```{r setup, include = FALSE}
