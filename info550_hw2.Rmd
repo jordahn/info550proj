@@ -15,7 +15,7 @@ library(tidyverse)
 This report will briefly explore the potential relationship between a country's capacity for analyzing and reporting data using statistical methods and a few important health indicators such as life expectancy, under 5 mortality, and maternal mortality. With sufficient data, current COVID-19 data might also be assessed.
 
 ```{r data, echo = FALSE}
-statcap <- read.csv("/Users/Jordan/Desktop/statistical-capacity-indicator.csv")
+statcap <- read.csv("statistical-capacity-indicator.csv")
 
 names(statcap) <- c('country', 'countrycode','year','statcapindicator')
 
