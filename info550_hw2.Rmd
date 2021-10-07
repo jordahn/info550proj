@@ -1,7 +1,7 @@
 ---
 title: "INFO550_Homework2"
 author: "Jordan Ahn"
-date: "9/22/2021"
+date: "`r Sys.Date(), '%d %B, %Y')`"
 output: html_document
 ---
 
@@ -38,3 +38,7 @@ ggplot(data = wa_subset, aes(x = year, y = statcapindicator, colour = country)) 
 ```
 
 
+```{r final chunk, echo = FALSE}
+getwd()
+devtools::session_info()
+```
