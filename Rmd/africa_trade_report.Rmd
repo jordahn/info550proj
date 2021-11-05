@@ -40,7 +40,7 @@ Here we show the top 10 most central nodes when analyzed using the PageRank meth
 
 
 ```{r centralityrank, echo = FALSE}
-arrange(nodes %>% select(c('label','pagerank)), desc(pagerank)) %>%  head(10)
+arrange(nodes %>% select(c('label','pagerank')), desc(pagerank)) %>%  head(10)
 
 ```
 
