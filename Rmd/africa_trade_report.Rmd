@@ -1,0 +1,52 @@
+---
+title: "Maritime Trade Analysis of Coastal African Countries"
+author: "Jordan Ahn"
+date: "`r Sys.Date(), '%d %B, %Y')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+here::i_am('Rmd/africa_trade_report.Rmd')
+library(tidyverse)
+library(igraph)
+library(htmltools)
+```
+
+## Introduction
+
+The United Nations Council on Trade and Development's (UNCTAD) maritime data was analyzed in the context of coastal African nations. The Liner Shipping Bilateral Connectivity Index (LSBCI) uses various vessel and maritime traffic data to calculate an index of connectivity between two givin nations. The hope of this report is to understand which African countries are highly connected to others to better understand movement of goods, people, and disease vectors such as mosquitos. This analysis is targeted at a particular invasive mosquito species, Anopheles stephensi.
+
+## Network Model
+
+```{r network, echo=FALSE}
+htmltools::includeHTML(here::here("Figs","trade_fig.html"))
+```
+Each node represents a coastal African country with directed edges pointing towards another node. A connection indicates an LSBCI ranked as one of the origin node’s highest three LSBCI.The nodes are also weighted by the number of connections directed towards it as shown by the size. The red diamond nodes (Djibouti and Sudan) are countries with known An. stephensi populations. 
+
+
+## Centrality Analysis
+
+```{r pagerank, echo = FALSE}
+source(here::here('R','pagerank.R'), knitr::knit_global())
+
+pagerank <- page_rank(africa_igraph, directed = TRUE, weights = E(africa_igraph)$weight)
+
+nodes$pagerank <- pagerank[[1]]
+
+```
+
+Here we show the top 10 most central nodes when analyzed using the PageRank method, which factors in the node's influence and the edge weight as well those of its neighbors.
+
+
+```{r centralityrank, echo = FALSE}
+arrange(nodes %>% select(c('label','pagerank)), desc(pagerank)) %>%  head(10)
+
+```
+
+
+
+```{r final chunk, echo = FALSE}
+getwd()
+devtools::session_info()
+```
