@@ -11,6 +11,7 @@ here::i_am('Rmd/africa_trade_report.Rmd')
 library(tidyverse)
 library(igraph)
 library(htmltools)
+
 ```
 
 ## Introduction
@@ -44,9 +45,3 @@ arrange(nodes %>% select(c('label','pagerank')), desc(pagerank)) %>%  head(10)
 
 ```
 
-
-
-```{r final chunk, echo = FALSE}
-getwd()
-devtools::session_info()
-```
