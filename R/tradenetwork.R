@@ -99,7 +99,7 @@ expafrica <- visNetwork(nodes,edges, height = 1000, width = "100%", main = "Mari
 expafrica
 
 
-visSave(expafrica,"trade_fig.html", selfcontained = TRUE, background = "white")
+visSave(expafrica,file ="Figs/trade_fig.html", selfcontained = TRUE, background = "white")
 
 
 
