@@ -1,7 +1,7 @@
 ---
 title: "Maritime Trade Analysis of Coastal African Countries"
 author: "Jordan Ahn"
-date: "`r Sys.Date(), '%d %B, %Y')`"
+date: "`r Sys.Date()`"
 output: html_document
 ---
 
