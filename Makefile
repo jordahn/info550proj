@@ -1,6 +1,6 @@
-africa_trade_report: Rmd/africa_trade_report.Rmd Figs/trade_network.html
+africa_trade_report: Rmd/africa_trade_report.Rmd Figs/trade_network.html R/pagerank.R
 	Rscript -e "rmarkdown::render('Rmd/africa_trade_report.Rmd')"
 
-trade_network.html: data/africatradedata.csv R/tradenetwork.R
+Figs/trade_network.html: data/africatradedata.csv R/tradenetwork.R
 	Rscript R/tradenetwork.R
 
