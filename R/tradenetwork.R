@@ -80,7 +80,8 @@ nodes <- mutate(nodes, group = ifelse(label %in% stephensi, "An. stephensi prese
 
 # the graph
 expafrica <- visNetwork(nodes,edges, height = 1000, width = "100%", main = "Maritime Trade Connectivity of Coastal African Nations <br> 
-                        (Top 3 LSBCI country pairs)") %>% 
+                        (Top 3 LSBCI country pairs)") %>%
+             
                visIgraphLayout(layout = "layout.lgl") %>% 
                visGroups(groupname = "An. stephensi present", shape = "diamond", color = "#D00000") %>% 
                visGroups(groupname = "No An. stephensi", shape = "dot", color = "#E9C46A" ) %>% 
@@ -94,12 +95,15 @@ expafrica <- visNetwork(nodes,edges, height = 1000, width = "100%", main = "Mari
                   list(label = "Data Unavailable", shape = "dot", color = "#2A9D8F")), 
                  useGroups = FALSE,
                  width = 0.15,
-                 zoom = FALSE) 
-
+                 zoom = FALSE) %>% 
+                visEvents(type = 'once', startStabilizing = 'function(){
+                          this.moveTo({scale:00000001})}') %>% 
+                visPhysics(stabilization = FALSE) 
+            
 expafrica
 
 
-visSave(expafrica,file ="Figs/trade_fig.html", selfcontained = TRUE, background = "white")
+visSave(expafrica,file ="Figs/trade_network.html", selfcontained = TRUE, background = "white")
 
 
 
