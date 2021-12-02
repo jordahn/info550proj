@@ -21,7 +21,7 @@ The United Nations Council on Trade and Development's (UNCTAD) maritime data was
 ## Network Model
 
 ```{r network, echo=FALSE}
-htmltools::includeHTML(here::here("Figs","trade_fig.html"))
+htmltools::includeHTML(here::here("Figs","trade_network.html"))
 ```
 Each node represents a coastal African country with directed edges pointing towards another node. A connection indicates an LSBCI ranked as one of the origin node’s highest three LSBCI.The nodes are also weighted by the number of connections directed towards it as shown by the size. The red diamond nodes (Djibouti and Sudan) are countries with known An. stephensi populations. 
 

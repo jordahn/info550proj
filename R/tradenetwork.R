@@ -70,10 +70,10 @@ degree_value <- degree(africa_igraph, mode = "in")
 nodes$value <- degree_value[match(nodes$id, names(degree_value))]
 
 
-# change color of countries with confirmed stephensi
-stephensi <- c("Djibouti", "Sudan")
+# change color of countries with confirmed mosquito
+mosquito <- c("Djibouti", "Sudan")
 edges <- mutate(edges, width = weight*40)
-nodes <- mutate(nodes, group = ifelse(label %in% stephensi, "An. stephensi present","No An. stephensi"),
+nodes <- mutate(nodes, group = ifelse(label %in% mosquito, "Invasive mosquito present","No invasive mosquito"),
                        color = ifelse(is.na(habitat.suitability),"#2A9D8F", ifelse(habitat.suitability == 2, "#E9C46A", "#D00000")))
                 
 
@@ -83,12 +83,13 @@ expafrica <- visNetwork(nodes,edges, height = 1000, width = "100%", main = "Mari
                         (Top 3 LSBCI country pairs)") %>%
              
                visIgraphLayout(layout = "layout.lgl") %>% 
-               visGroups(groupname = "An. stephensi present", shape = "diamond", color = "#D00000") %>% 
-               visGroups(groupname = "No An. stephensi", shape = "dot", color = "#E9C46A" ) %>% 
+               visGroups(groupname = "Invasive mosquito present", shape = "diamond", color = "#D00000") %>% 
+               visGroups(groupname = "No invasive mosquito", shape = "dot", color = "#E9C46A" ) %>% 
                visNodes(shadow = list(enabled = TRUE, size = 10), font = list(size = "20")) %>%
                visEdges(smooth = FALSE,arrows = "to", color = list(color = "#A8DADC", highlight = "#9A8C98")) %>%
                visOptions(highlightNearest = list(enabled = TRUE, degree = list(from = 0, to = 1), algorithm = "hierarchical"),
-                           selectedBy = list(variable = "group", selected = "An. stephensi present",highlight = TRUE)) %>% 
+                           selectedBy = list(variable = "group", selected = "Invasive mosquito present",highlight = TRUE),
+                          autoResize = FALSE) %>% 
                visLegend(addNodes = list(
                   list(label = "Highly suitable habitat", shape = "dot", color = "#D00000"),
                   list(label = "Moderately suitable habitat", shape = "dot", color = "#E9C46A"),
@@ -96,9 +97,8 @@ expafrica <- visNetwork(nodes,edges, height = 1000, width = "100%", main = "Mari
                  useGroups = FALSE,
                  width = 0.15,
                  zoom = FALSE) %>% 
-                visEvents(type = 'once', startStabilizing = 'function(){
-                          this.moveTo({scale:00000001})}') %>% 
-                visPhysics(stabilization = FALSE) 
+                 visPhysics(stabilization = TRUE)
+             
             
 expafrica
 
